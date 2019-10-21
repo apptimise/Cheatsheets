@@ -2,11 +2,32 @@
 [HEAD](#HEAD) | 
 
 # Git Command List
-git [add](#git-add) | git [clone](#git-clone) | git [commit](#git-commit) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log) | git [pull](#git-pull) | git [push](#git-push) | git [remote](#git-remote) | git [status](#git-status) |
+git [add](#git-add) | git [clone](#git-clone) |  git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log) | git [pull](#git-pull) | git [push](#git-push) | git [remote](#git-remote) | git [rebase](#git-rebase) | git [reflog](#git-reflog) | git [status](#git-status) |
 
 # Git Terminology
 ## HEAD
-HEAD is a pointer to the local branch you’re currently on: [[Reference](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#_switching_branches)]
+HEAD is a pointer to the local branch you’re currently on [[Ref](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#_switching_branches)].
+
+# Git Examples
+
+## Make a change to a remote repo
+
+```bash
+git add <file/directory>
+git commit -m 'message'
+git pull
+git push <remote> <branch> # e.g. origin master
+```
+
+
+
+# Git Discussions
+
+## Clone vs. Checkout vs. Pull vs. fetch
+
+* `clone` is for fetching repositories you don't have, `checkout` is for switching between branches in a repository you already have. `checkout` can also be used to overwrite a file in your working copy with a version of that file from another revision [[Ref]( https://stackoverflow.com/questions/7298598/what-is-the-difference-between-git-clone-and-checkout#answer-7298621)]
+* `pull`  is a `fetch` plus `merge` the changes into the *local branch* of the same name [[Ref]( https://stackoverflow.com/questions/7298598/what-is-the-difference-between-git-clone-and-checkout#answer-7298621)].
+* `checkout` is a local operation that only operates on data that's already fetched [[Ref]( https://stackoverflow.com/questions/7298598/what-is-the-difference-between-git-clone-and-checkout#answer-7298621)].
 
 # Git Commands
 
@@ -92,8 +113,34 @@ git diff
 git revert <commit>
 ```
 
+# Rewriting Git History
+
+## git commit --amend
+
+1. Replace the last commit with the staged changes and last commit combined. Use with nothing staged to only edit the last commit’s message.
+    * Amended commits are entirely new commits and the previous commit will no longer be on your current branch (history-rewriting [[Ref]( https://www.atlassian.com/git/tutorials/rewriting-history )])
+```bash
+git commit --amend -m "<message>"
+```
+
+## git rebase
+
+1. Rebase the current branch onto <base>. 
+    * The <base> can be a *commit ID*, a *branch name*, a *tag*, or a *relative reference to `HEAD`*.
+```bash
+git rebase <base>
+```
+
+## git reflog
+
+1. Show a log of changes to the local repository’s `HEAD`. 
+    * Add `--relative-date` flag to show date info or `--all` to show all refs.
+```bash
+git reflog
+```
 
 ## Remote Repositories
+
 ### git remote 
 1. Create a new connection to a remote repo. Use <name> as a shortcut for <url>
     * After adding a remote, you can use <name> as a shortcut for <url> in other commands.
