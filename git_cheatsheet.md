@@ -17,16 +17,20 @@ git [status](#git-status) |
 
 # Git Terminology
 ## HEAD
-HEAD is a pointer to the local branch you’re currently on: <a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#_switching_branches" target="_blank">Reference</a>
+HEAD is a pointer to the local branch you’re currently on: [[Reference](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#_switching_branches)]
 
 # Git Commands
 
 ## Git Basics
 
+### Upgrade on Windows
+``bash
+ git update-git-for-windows
+ ```
 
 ### git init
 1. Create empty Git repo in specified directory. 
-..* Run with no arguments to initialize the current directory as a git repository
+  * Run with no arguments to initialize the current directory as a git repository
 ```bash 
 git init <directory>
 ```
