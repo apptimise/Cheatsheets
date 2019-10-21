@@ -117,9 +117,12 @@ git revert <commit>
 
 ## git commit --amend
 
-1. Replace the last commit with the staged changes and last commit combined. Use with nothing staged to only edit the last commit’s message.
-    * If you commit, all the commits after that are ignored.
+1. Replace the last commit with the **staged** changes and last commit combined.
     * Amended commits are entirely new commits and the previous commit will no longer be on your current branch (history-rewriting [[Ref]( https://www.atlassian.com/git/tutorials/rewriting-history )])
+    * If you commit once, then try to commit again, you'll get *Your branch is ahead of 'origin/master' by 1 commit.  (use "git push" to publish your local commits)*.  
+
+2.  Or use with **nothing staged** to only edit the last commit’s message.
+    
 ```bash
 git commit --amend -m "<message>"
 ```
