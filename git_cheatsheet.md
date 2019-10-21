@@ -1,20 +1,32 @@
-# Git Commands List
+# Git Terminology
+[HEAD](#HEAD) | 
+
+# Git Command List
 git [add](#git-add) |
 git [clone](#git-clone) |
+git [commit](#git-commit) |
 git [config](#git-config) |
+git [diff](#git-diff) |
 git [fetch](#git-fetch) |
 git [init](#git-init) |
+git [log](#git-log) |
 git [pull](#git-pull) |
 git [push](#git-push) |
 git [remote](#git-remote) |
+git [status](#git-status) |
+
+# Git Terminology
+## HEAD
+HEAD is a pointer to the local branch you’re currently on: <a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#_switching_branches" target="_blank">Reference</a>
 
 # Git Commands
 
 ## Git Basics
-Create empty Git repo in specified directory. 
+
 
 ### git init
-Run with no arguments to initialize the current directory as a git repository
+1. Create empty Git repo in specified directory. 
+..* Run with no arguments to initialize the current directory as a git repository
 ```bash 
 git init <directory>
 ```
@@ -30,7 +42,7 @@ git clone <repo>
 ### git config
 Define author name to be used for all commits in current repo. 
 
-Devs commonly use --global flag to set config options for current user.
+Devs commonly use --global flag to set config options for current user (configuration values on a global or local project level)
 ```bash
 git config user.name <name>
 ```
@@ -42,6 +54,40 @@ Replace <directory> with a <file> to change a specific file.
 ```bash
 git add <directory>
 ```
+ 
+### git commit
+Commit the staged snapshot, use <message> as the commit message.
+```bash
+git commit -m "<message>"
+```
+ 
+### git status
+List which files are staged, unstaged, and untracked.
+```bash
+git status
+```
+
+### git log
+Display the entire commit history using the default format.
+
+For customization see additional options.
+```bash
+git log
+```
+
+### git diff
+Show unstaged changes between your index and working directory.
+```bash
+git diff
+```
+
+## Undoing Changes
+### git revert
+Create new commit that undo all of the changes made in <commit>, then apply it to the current branch.
+```bash 
+git revert <commit>
+```
+
 
 ## Remote Repositories
 ### git remote 
