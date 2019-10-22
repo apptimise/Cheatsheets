@@ -176,7 +176,7 @@ git diff
 
 5. `git commit -m "<message>"`
 
-6. `git clean` Remove extra **.orig* created by diff tool
+6. `git clean` Remove extra **.orig* created by diff tool (`-f`?)
 
 
 
