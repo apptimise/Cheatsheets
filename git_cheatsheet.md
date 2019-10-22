@@ -188,7 +188,7 @@ git diff
       ```
 4. `:wqa` save and exit
 
-5. You probably need to squash commits into one: `git rebase -i HEAD~<n>`, if not just do a normal commit:  `git commit -m "<message>"`   
+5. You probably need to squash commits into one:  `git status` to get <n> and then:`git rebase -i HEAD~<n>`, if not just do a normal commit:  `git commit -m "<message>"`   
 
 6. `git clean` Remove extra **.orig* created by diff tool (`-f`?)
 
