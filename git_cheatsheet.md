@@ -1,26 +1,11 @@
-<<<<<<< HEAD
 ## Git Terminology
-
-[HEAD](#HEAD) | 
-
-## Git Command List
-
-git [add](#git-add) | git [clone](#git-clone) |  git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log) | git [pull](#git-pull) | git [push](#git-push) | git [remote](#git-remote) | git [rebase](#git-rebase) | git [reflog](#git-reflog) | git [status](#git-status) |
-
-## Git Terminology
-
-#### HEAD
-
-=======
-### Git Terminology
 [HEAD](#HEAD) | 
 
 ## Git Command List
 git [add](#git-add) | git [clone](#git-clone) |  git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log) | git [pull](#git-pull) | git [push](#git-push) | git [remote](#git-remote) | git [rebase](#git-rebase) | git [reflog](#git-reflog) | git [status](#git-status) |
 
-# Git Terminology
+## Git Terminology
 #### HEAD
->>>>>>> 7de0303678e86eafaebf32f96798fdbc4c04b3aa
 HEAD is a pointer to the local branch you’re currently on [[Ref](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#_switching_branches)].
 
 ## Git Examples
@@ -153,7 +138,51 @@ git log # --oneline
 git diff
 ```
 
+### Resolve Conflicts
+
+#### git mergetool
+
+1. Resolve conflicts using `vimdiff` [[Ref]( https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git)]
+    * First run this:
+      ```bash
+      git mergetool
+      ```
+      ```
+      ╔═══════╦══════╦════════╗
+      ║ LOCAL ║ BASE ║ REMOTE ║ 
+      ╠═══════╩══════╩════════╣
+      ║        MERGED         ║
+      ╚═══════════════════════╝
+      ```
+    * It gives you 4 views:
+      * *LOCAL* – this is file from the current branch
+      
+      * *BASE* – common ancestor, how file looked before both changes
+      
+      * *REMOTE* – file you are merging into your branch
+      
+      * *MERGED* – merge result, this is what gets saved in the repo 
+      
+    * You could edit the **MERGED** view: 
+      * If you want to get changes from REMOTE
+        ```base
+        :diffg RE  
+        ```
+      * If you want to get changes from BASE
+        ```base
+        :diffg BA
+        ```
+      * If you want to get changes from LOCAL
+        ```base
+        :diffg LO
+        ```
+
+
+
+
+
 ### Undoing Changes
+
 #### git revert
 1. Create new commit that undo all of the changes made in <commit>, then apply it to the current branch.
 
