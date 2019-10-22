@@ -2,7 +2,7 @@
 [HEAD](#HEAD) | 
 
 ## Git Command List
-git [add](#git-add) | git [clone](#git-clone) |  git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log)  | git [mergetool](#mergetool) | git [pull](#git-pull) | git [push](#git-push) | git [remote](#git-remote) | git [rebase](#git-rebase) | git [reflog](#git-reflog) | git [reset --soft](#reset---soft) | git [status](#git-status) |
+git [add](#git-add) | git [clone](#git-clone) |  git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log)  | git [mergetool](#mergetool) | git [pull](#git-pull) | git [push](#git-push) | git [remote](#git-remote) | git [rebase](#git-rebase) | git [reflog](#git-reflog) | git [reset --soft](#git-reset---soft) | git [status](#git-status) |
 
 ## Git Terminology
 #### HEAD
@@ -252,7 +252,7 @@ git reflog
 
 ### Remote Repositories
 
-### git remote 
+#### git remote 
 1. Create a new connection to a remote repo. Use <name> as a shortcut for <url>
     * After adding a remote, you can use <name> as a shortcut for <url> in other commands.
 ```bash 
