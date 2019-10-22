@@ -39,6 +39,20 @@ git checkout <file>
 git checkout <file>
 ```
 
+#### Squash n commits into 1
+
+```bash
+git rebase -i HEAD~<n>
+```
+
+#### Squash from commit commit-hash
+
+```bash
+git rebase -i [commit-hash]
+```
+
+
+
 
 
 
