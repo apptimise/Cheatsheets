@@ -154,29 +154,29 @@ git diff
       ║        MERGED         ║
       ╚═══════════════════════╝
       ```
-    * It gives you 4 views:
-      * *LOCAL* – this is file from the current branch
-      
-      * *BASE* – common ancestor, how file looked before both changes
-      
-      * *REMOTE* – file you are merging into your branch
-      
-      * *MERGED* – merge result, this is what gets saved in the repo 
-      
-    * You could edit the **MERGED** view: 
-      * If you want to get changes from REMOTE
-        ```base
-        :diffg RE  
-        ```
-      * If you want to get changes from BASE
-        ```base
-        :diffg BA
-        ```
-      * If you want to get changes from LOCAL
-        ```base
-        :diffg LO
-        ```
+2. It gives you 4 views:
+    * *LOCAL* – this is file from the current branch
+    * *BASE* – common ancestor, how file looked before both changes
+    * *REMOTE* – file you are merging into your branch
+    * *MERGED* – merge result, this is what gets saved in the repo 
+3. You could edit the **MERGED** view: 
+    * If you want to get changes from REMOTE
+      ```base
+      :diffg RE  
+      ```
+    * If you want to get changes from BASE
+      ```base
+      :diffg BA
+      ```
+    * If you want to get changes from LOCAL
+      ```base
+      :diffg LO
+      ```
+4. `:wqa` save and exit
 
+5. `git commit -m "<message>"`
+
+6. `git clean` Remove extra **.orig* created by diff tool
 
 
 
