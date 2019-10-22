@@ -5,7 +5,7 @@
 git [add](#git-add) | git [clone](#git-clone) |  git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log)  | git [mergetool](#mergetool) | git [pull](#git-pull) | git [push](#git-push) | git [remote](#git-remote) | git [rebase](#git-rebase) | git [reflog](#git-reflog) | git [status](#git-status) |
 
 ## Git Terminology
-#### HEAD
+#### HEAD cool
 HEAD is a pointer to the local branch you’re currently on [[Ref](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#_switching_branches)].
 
 ## Git Examples
@@ -174,7 +174,7 @@ git diff
       ```
 4. `:wqa` save and exit
 
-5. `git commit -m "<message>"` 
+5. `git commit -m "<message>"`  git commit -a 
 
 6. `git clean` Remove extra **.orig* created by diff tool (`-f`?)
 
