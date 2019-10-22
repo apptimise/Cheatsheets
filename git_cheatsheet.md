@@ -1,4 +1,4 @@
-# Git Terminology
+### Git Terminology
 [HEAD](#HEAD) | 
 
 # Git Command List
