@@ -2,7 +2,7 @@
 [HEAD](#HEAD) | 
 
 ## Git Command List
-git [add](#git-add) | git [clone](#git-clone) |  git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log)  | git [mergetool](#mergetool) | git [pull](#git-pull) | git [push](#git-push) | git [remote](#git-remote) | git [rebase](#git-rebase) | git [reflog](#git-reflog) | git [status](#git-status) |
+git [add](#git-add) | git [clone](#git-clone) |  git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log)  | git [mergetool](#mergetool) | git [pull](#git-pull) | git [push](#git-push) | git [remote](#git-remote) | git [rebase](#git-rebase) | git [reflog](#git-reflog) | git [reset --soft](#reset---soft) | git [status](#git-status) |
 
 ## Git Terminology
 #### HEAD
@@ -71,7 +71,7 @@ git reset --soft HEAD~<n>
 #### --amend vs. reset --soft:
 
 - `git commit --amend` to add/rm files from the very last commit or to change its message.
-- `git reset --soft HEAD~<n> ` to combine several sequential commits into a new one.
+- `git reset --soft HEAD~<n> ` `git commit -m "<message>"` to combine several sequential commits into a new one.
 
 ## Git Commands
 
@@ -135,7 +135,17 @@ git commit -m "<message>"
 git status
 ```
 
+#### git reset --soft
+
+1. Combine several sequential commits into a new one.
+
+```bash
+git reset --soft HEAD~<n>
+git commit -m "<message"> 
+```
+
 #### git log
+
 1. Display the entire commit history using the default format.
 
     * For customization see additional options.
@@ -165,11 +175,13 @@ git diff
       ║        MERGED         ║
       ╚═══════════════════════╝
       ```
+    
 2. It gives you 4 views:
     * *LOCAL* – this is file from the current branch
     * *BASE* – common ancestor, how file looked before both changes
     * *REMOTE* – file you are merging into your branch
     * *MERGED* – merge result, this is what gets saved in the repo 
+    
 3. You could edit the **MERGED** view: 
     * If you want to get changes from REMOTE
       ```base
@@ -183,9 +195,16 @@ git diff
       ```base
       :diffg LO
       ```
+    
 4. `:wqa` save and exit
 
-5. You probably need to squash commits into one:  `git status` to get <n> and then: `git reset --soft HEAD~<n>`, if not just do a normal commit:  `git commit -m "<message>"`   
+5. You probably need to squash commits into one (if note, just do the last commit command):  
+
+    ```bash
+    git status # get <n>
+    git reset --soft HEAD~<n>
+    git commit -m "<message">   
+    ```
 
 6. `git clean` Remove extra **.orig* created by diff tool (`-f`?)
 
