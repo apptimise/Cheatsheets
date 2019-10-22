@@ -42,16 +42,8 @@ git checkout <file>
 #### Squash n commits into 1
 
 ```bash
-git rebase -i HEAD~<n>
+git reset --soft HEAD~<n>
 ```
-
-#### Squash from commit commit-hash
-
-```bash
-git rebase -i [commit-hash]
-```
-
-
 
 
 
@@ -75,6 +67,11 @@ git rebase -i [commit-hash]
 ![Diffs](Images/diffs.png) 
 
 [[Ref]( https://stackoverflow.com/questions/1587846/how-do-i-show-the-changes-which-have-been-staged?noredirect=1&lq=1)]
+
+#### --amend vs. reset --soft:
+
+- `git commit --amend` to add/rm files from the very last commit or to change its message.
+- `git reset --soft HEAD~<n> ` to combine several sequential commits into a new one.
 
 ## Git Commands
 
@@ -188,7 +185,7 @@ git diff
       ```
 4. `:wqa` save and exit
 
-5. You probably need to squash commits into one:  `git status` to get <n> and then:`git rebase -i HEAD~<n>`, if not just do a normal commit:  `git commit -m "<message>"`   
+5. You probably need to squash commits into one:  `git status` to get <n> and then: `git reset --soft HEAD~<n>`, if not just do a normal commit:  `git commit -m "<message>"`   
 
 6. `git clean` Remove extra **.orig* created by diff tool (`-f`?)
 
