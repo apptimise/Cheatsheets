@@ -14,10 +14,31 @@ HEAD is a pointer to the local branch you’re currently on [[Ref](https://git-s
 
 ```bash
 git add <file/directory>
+git diff --name-only --staged # show staged difference with respect to HEAD (file names only) 
 git commit -m 'message'
 git pull
-git push <remote> <branch> # e.g. origin master
+git status
+git push <remote> <branch>    # e.g. origin master
 ```
+
+## Unstage a staged file
+
+```bash
+git reset <file>
+```
+
+## Get a mistakenly deleted file back
+
+1. If staged: i.e. deleted from the Git index using `git rm <file>`
+```bash
+git reset <file>
+git checkout <file>
+```
+2. if not staged: i.e. deleted outside the Git 
+```bash
+git checkout <file>
+```
+
 
 
 
@@ -28,6 +49,18 @@ git push <remote> <branch> # e.g. origin master
 * `clone` is for fetching repositories you don't have, `checkout` is for switching between branches in a repository you already have. `checkout` can also be used to overwrite a file in your working copy with a version of that file from another revision [[Ref]( https://stackoverflow.com/questions/7298598/what-is-the-difference-between-git-clone-and-checkout#answer-7298621)]
 * `pull`  is a `fetch` plus `merge` the changes into the *local branch* of the same name [[Ref]( https://stackoverflow.com/questions/7298598/what-is-the-difference-between-git-clone-and-checkout#answer-7298621)].
 * `checkout` is a local operation that only operates on data that's already fetched [[Ref]( https://stackoverflow.com/questions/7298598/what-is-the-difference-between-git-clone-and-checkout#answer-7298621)].
+
+## Diffs 
+
+`git diff` differences between the **working directory** and the **index**.
+
+`git diff --staged`or `--cached` differences between the **index** and the **HEAD**. 
+
+`git diff HEAD` differences between the **working directory** and **HEAD**. All changes since the last commit. 
+
+![Diffs](Images/diffs.png) 
+
+[[Ref]( https://stackoverflow.com/questions/1587846/how-do-i-show-the-changes-which-have-been-staged?noredirect=1&lq=1)]
 
 # Git Commands
 
@@ -96,7 +129,7 @@ git status
 
     * For customization see additional options.
 ```bash
-git log
+git log # --oneline
 ```
 
 ### git diff
