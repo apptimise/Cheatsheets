@@ -1,1 +1,4 @@
-This is the code from the external source
+Conflict from local
+
+  for i=0; i++:
+     increase(i)
