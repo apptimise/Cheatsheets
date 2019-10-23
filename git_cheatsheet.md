@@ -16,7 +16,7 @@ HEAD is a pointer to the local branch you’re currently on [[Ref](https://git-s
 git add <file/directory>
 git diff --name-only --staged # show staged difference with respect to HEAD (file names only) 
 git commit -m 'message'
-git pull
+git fetch
 git status
 git push <remote> <branch>    # e.g. origin master
 ```
