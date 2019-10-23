@@ -1,4 +1,4 @@
-conf 1
+coniuiuf 1
 ## 1. Git Terminology
 [HEAD](#HEAD) | 
 
