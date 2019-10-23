@@ -362,6 +362,7 @@ git pull <remote>
 git push <remote> <branch>
 ```
 ---
+conf2
 
 ###   Upgrade on Windows
 
