@@ -369,7 +369,7 @@ git pull <remote>
 git push <remote> <branch>
 ```
 ---
-conf2
+codfdfnf2
 
 ###   Upgrade on Windows
 
