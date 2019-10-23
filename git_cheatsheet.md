@@ -1,4 +1,3 @@
-cfd 1
 ## 1. Git Terminology
 [HEAD](#HEAD) | 
 
@@ -369,7 +368,6 @@ git pull <remote>
 git push <remote> <branch>
 ```
 ---
-con2
 
 ###   Upgrade on Windows
 
