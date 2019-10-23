@@ -1,3 +1,4 @@
+conf 1
 ## 1. Git Terminology
 [HEAD](#HEAD) | 
 
