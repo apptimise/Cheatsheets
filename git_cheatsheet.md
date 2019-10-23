@@ -1,24 +1,34 @@
-## Git Terminology
+## 1. Git Terminology
 [HEAD](#HEAD) | 
 
-## Git Command List
-git [add](#git-add) | git [clone](#git-clone) |  git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log)  | git [mergetool](#mergetool) | git [pull](#git-pull) | git [push](#git-push) | git [remote](#git-remote) | git [rebase](#git-rebase) | git [reflog](#git-reflog) | git [reset --soft](#git-reset---soft) | git [status](#git-status) |
 
-## Git Terminology
+
+## 2. Git Command List ([commands](#git-commands))
+
+git [add](#git-add) | git [branch](#git-branch) | git [clone](#git-clone) |  git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log)  | git [mergetool](#mergetool) | git [pull](#git-pull) | git [push](#git-push) | git [remote](#git-remote) | git [rebase](#git-rebase) | git [reflog](#git-reflog) | git [reset --soft](#git-reset---soft) | git [status](#git-status) |
+
+
+
+## 3. Git Terminology
+
 #### HEAD
 HEAD is a pointer to the local branch you’re currently on [[Ref](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#_switching_branches)].
 
-## Git Examples
 
-#### Make a change to a remote repo
+
+## 4. Git Examples
+
+#### Make a change to a remote repo 
 
 ```bash
+git fetch
+git status                    # can also use diff to see details
 git add <file/directory>
-git diff --name-only --staged # show staged difference with respect to HEAD (file names only) 
+git diff --name-only --staged # show staged differences with respect to HEAD 
 git commit -m 'message'
+git status                    # decide what to do before push, e.g. if merge is required
 git pull
-git status
-git push <remote> <branch>    # e.g. origin master
+git push <remote> <branch>    # e.g. git push origin master
 ```
 
 #### Unstage a staged file
@@ -39,16 +49,44 @@ git checkout <file>
 git checkout <file>
 ```
 
-#### Squash n commits into 1
+#### Squash n commits into 1 TODO: change mergetool too
+
+1. Do the following steps if you are **NOT** *behind*
 
 ```bash
+git status                   # find number <n>
 git reset --soft HEAD~<n>
+git commit -m "<message"> 
+```
+
+2. If you are *behind*, just do a `rebase` so that the squashed commit comes on the top of the changes made to the remote branch [Ref](https://stackoverflow.com/questions/43780907/feature-branch-is-behind-dev-after-squash):
+```bash
+git status                   # find number <n>
+git reset --soft HEAD~<n>
+git commit -m "<message"> 
+git rebase <remote> <branch> # e.g. git rebase origin master
+```
+
+#### Compare a local branch with its remote
+
+1.  See what my push will do to remote repo [[Ref](https://stackoverflow.com/questions/1800783/how-to-compare-a-local-git-branch-with-its-remote-branch)]
+
+```bash
+git fetch                                         # update remote-tracking branches
+git branch -a                                     # 'remotes/' is not part of the name
+git diff <remote>/<remote_branch> <local_branch>  # e.g. git diff origin/master master
+```
+
+#### Get a list of conflicted files
+
+1. To create an alias or an executable to be shared with your team, check [[Ref](https://stackoverflow.com/questions/3065650/whats-the-simplest-way-to-list-conflicted-files-in-git)]
+```bash
+git diff --name-only --diff-filter=U
 ```
 
 
 
-
-## Git Discussions
+## 5. Git Discussions
 
 #### Clone vs. Checkout vs. Pull vs. fetch
 
@@ -71,17 +109,20 @@ git reset --soft HEAD~<n>
 #### --amend vs. reset --soft:
 
 - `git commit --amend` to add/rm files from the very last commit or to change its message.
+
 - `git reset --soft HEAD~<n> ` `git commit -m "<message>"` to combine several sequential commits into a new one.
+
+  
 
 ## Git Commands
 
-#### Upgrade on Windows
+  * ###   Upgrade on Windows
 
 ```bash
  git update-git-for-windows
 ```
 
-
+---
 
 ### Git Basics
 
@@ -94,13 +135,13 @@ git init <directory>
 ```
 
 #### git clone
-1. Clone repo located at <repo> onto local machine. 
+1. Clone repo located at `<repo>` onto local machine. 
 
     *  Original repo can be located on the local filesystem or on a remote machine via HTTP or SSH.
 ```bash
 git clone <repo>
 ```
-2. Clone repo located at <repo> onto <target>
+2. Clone repo located at `<repo>` onto `<target>`
 ```bash
 git clone <repo> <target>
 ```
@@ -108,21 +149,21 @@ git clone <repo> <target>
 #### git config
 1. Define author name to be used for all commits in current repo. 
 
-    * Devs commonly use --global flag to set config options for current user (configuration values on a global or local project level)
+    * Devs commonly use `--global` flag to set config options for current user (configuration values on a global or local project level)
 
 ```bash
-git config user.name <name>
+git config user.name "<name>""
 ```
 
 #### git add
-1. Stage all changes in <directory> / <file> for the next commit
-    * Replace <directory> with a <file> to change a specific file.
+1. Stage all changes in `<directory>`  or `<file>` for the next commit
+    * Replace `<directory>` with `<file>` to change a specific file.
 ```bash
 git add <directory>
 ```
 
 #### git commit
-1. Commit the staged snapshot, use <message> as the commit message.
+1. Commit the staged snapshot, use `"<message>"` as the commit message.
 
 ```bash
 git commit -m "<message>"
@@ -158,6 +199,8 @@ git log # --oneline
 ```bash
 git diff
 ```
+
+---
 
 ### Resolve Conflicts
 
@@ -201,14 +244,15 @@ git diff
 5. You probably need to squash commits into one (if note, just do the last commit command):  
 
     ```bash
-    git status # get <n>
+    # git diff --name-only --diff-filter=U # double check the list of conflicted files
+    git status                             # get <n>
     git reset --soft HEAD~<n>
     git commit -m "<message">   
     ```
 
 6. `git clean` Remove extra **.orig* created by diff tool (`-f`?)
 
-
+---
 
 
 ### Undoing Changes
@@ -219,6 +263,8 @@ git diff
 ```bash 
 git revert <commit>
 ```
+
+---
 
 ### Rewriting Git History
 
@@ -236,8 +282,8 @@ git commit --amend -m "<message>"
 
 #### git rebase
 
-1. Rebase the current branch onto <base>. 
-    * The <base> can be a *commit ID*, a *branch name*, a *tag*, or a *relative reference to `HEAD`*.
+1. Rebase the current branch onto `<base>`. 
+    * The `<base>` can be a *commit ID*, a *branch name*, a *tag*, or a *relative reference to `HEAD`*.
 ```bash
 git rebase <base>
 ```
@@ -250,29 +296,53 @@ git rebase <base>
 git reflog
 ```
 
+---
+
+### Git Branches
+
+#### git branch
+
+1. List all of the branches in your repo. 
+
+```bash
+git branch
+```
+
+2. To view your *local* and *remote* branches, pass the `-a` flag 
+```bash
+git branch -a
+```
+3. Add a  `<branch>` argument to create a new branch with the name `<branch>` 
+```bash
+git branch <branch>
+```
+
+---
+
 ### Remote Repositories
 
 #### git remote 
-1. Create a new connection to a remote repo. Use <name> as a shortcut for <url>
-    * After adding a remote, you can use <name> as a shortcut for <url> in other commands.
+1. Create a new connection to a remote repo. Use `<name>` as a shortcut for `<url>`
+    * After adding a remote, you can use `<name>` as a shortcut for `<url>` in other commands.
 ```bash 
 git remote add <name> <url>
 ```
 
 #### git fetch
-1. Fetch a specific <branch>, from the repo.
+1. Fetch a specific `<branch>`, from the repo.
+    * Download the remote content, but leave your local repo's work intact
 ```bash 
 git fetch <remote> <branch>
 ```
 
-2. Leave off <branch> to fetch all remote refs.
+2. Leave off `<branch>` to fetch all remote refs.
 ```bash 
 git fetch <remote>
 ```
 
 #### git pull
 
-1. Fetch the specified remote’s copy of current branch and immediately merge it into the local copy
+1. **Fetch** the specified remote’s copy of current branch and immediately **merge** it into the local copy
 
 ```bash
 git pull <remote>
