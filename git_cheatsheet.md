@@ -1,7 +1,7 @@
 ## 1. Git Terminology
 [HEAD](#HEAD) | 
 
-
+Upstream has changed
 
 ## 2. Git Command List ([commands](#git-commands))
 
