@@ -1,3 +1,4 @@
+conf 1
 ## 1. Git Terminology
 [HEAD](#HEAD) | 
 
@@ -36,25 +37,7 @@ git pull
 git push <remote> <branch>                        # e.g. git push origin master
 ```
 
-#### Unstage a staged file
-
-```bash
-git reset <file>
-```
-
-#### Get a mistakenly deleted file back
-
-1. If staged: i.e. deleted from the Git index using `git rm <file>`
-```bash
-git reset <file>
-git checkout <file>
-```
-2. if not staged: i.e. deleted outside the Git, so that the file can exist on the repo, but not the working directory
-```bash
-git checkout <file>
-```
-
-#### Squash n commits into 1 TODO: change mergetool too
+#### Squash n commits into 1
 
 1. Do the following steps if you are **NOT** ***behind***
 
@@ -78,7 +61,25 @@ git commit -m "<my local changes message">
 git pull
 git mergetool
 git commit -m "<resolved conflicts message"> 
+git status                   # at this point, you should be ahead by 2 commits
 git push
+```
+#### Unstage a staged file
+
+```bash
+git reset <file>
+```
+
+#### Get a mistakenly deleted file back
+
+1. If staged: i.e. deleted from the Git index using `git rm <file>`
+```bash
+git reset <file>
+git checkout <file>
+```
+2. if not staged: i.e. deleted outside the Git, so that the file can exist on the repo, but not the working directory
+```bash
+git checkout <file>
 ```
 
 #### Compare a local branch with its remote
@@ -96,6 +97,16 @@ git diff <remote>/<remote_branch> <local_branch>  # e.g. git diff origin/master 
 1. To create an alias or an executable to be shared with your team, check [[Ref](https://stackoverflow.com/questions/3065650/whats-the-simplest-way-to-list-conflicted-files-in-git)]
 ```bash
 git diff --name-only --diff-filter=U
+```
+
+#### Bring back a conflicted file to unmerged
+
+Check if it is staged, then add it back as an *unmerged* file using the `-m` option from `checkout` [[Ref](https://stackoverflow.com/questions/36294693/still-have-conflicts-but-git-says-no-files-need-merging/36342831)]
+
+```bash
+git ls-files --stage <file> # it is probably staged
+git checkout -m <file>
+git mergetool
 ```
 
 
@@ -247,16 +258,13 @@ git diff
     
 4. `:wqa` save and exit
 
-5. You probably need to squash commits into one (if note, just do the last commit command):  
+5. `git clean` Remove extra **.orig* created by diff tool (`-f`?)
+
+6. Commit your changes  
 
     ```bash
-    # git diff --name-only --diff-filter=U # double check the list of conflicted files
-    git status                             # get <n>
-    git reset --soft HEAD~<n>
-    git commit -m "<message">   
+    git commit -m "<conflict resolved message">   
     ```
-
-6. `git clean` Remove extra **.orig* created by diff tool (`-f`?)
 
 ---
 
@@ -361,6 +369,7 @@ git pull <remote>
 git push <remote> <branch>
 ```
 ---
+conf2
 
 ###   Upgrade on Windows
 
