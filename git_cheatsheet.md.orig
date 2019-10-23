@@ -362,6 +362,7 @@ git pull <remote>
 ```bash
 git push <remote> <branch>
 ```
+<<<<<<< ours
 ---
 
 ###   Upgrade on Windows
@@ -372,3 +373,8 @@ git update-git-for-windows
 
 ---
 
+||||||| base
+
+=======
+change 2
+>>>>>>> theirs
