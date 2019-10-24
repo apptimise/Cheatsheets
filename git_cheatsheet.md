@@ -52,7 +52,7 @@ git commit -m "<message">
     <blockquote> The remote branch cannot just be fast-forwarded to your commit. So, this way, you'll end up with 2 commits, which is not a bad thing. One shows your local changes and the other shows the two branches that are merged together as a result of conflict resolving (a commit with two parents).</blockquote>  
 ```bash
 git status                   # find number <n>
-git reset --soft HEAD~<n>
+git reset --soft HEAD~<n>    # or git reset --soft <root_commit>
 git commit -m "<my local changes message"> 
 git pull
 git mergetool
@@ -218,10 +218,12 @@ git status
 
 #### git reset --soft
 
-1. Combine several sequential commits into a new one.
+`--soft` does not touch the index file or the working tree at all (but resets the head to `<commit>`, just like all modes do
+
+1. Combine several sequential commits into a new one (`HEAD~<n>` is the commit here)
 
 ```bash
-git reset --soft HEAD~<n>
+git reset --soft HEAD~<n>    # or git reset --soft <commit>
 git commit -m "<message"> 
 ```
 
@@ -330,7 +332,7 @@ git commit --amend -m "<message>"
 git rebase <base>
 ```
 
-<img src="/home/ashkan/Cheatsheets/git/Images/rebase.svg" alt="rebase" style="zoom:50%;" />
+<img src="Images/rebase.svg" alt="rebase" style="zoom:50%;" />
 
 #### git reflog
 
