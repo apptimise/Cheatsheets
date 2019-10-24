@@ -314,7 +314,7 @@ git show --stat
     
 4. `:wqa` save and exit
 
-5. `git clean` Remove extra **.orig* created by diff tool (`-f`?)
+5. `git clean` Remove extra **.orig* created by diff tool (:warning:`-f`?)
 
 6. Commit your changes  
 
@@ -328,7 +328,7 @@ git show --stat
 ### Undoing Changes
 
 #### git revert
-1. Create new commit that undo all of the changes made in <commit>, then apply it to the current branch.
+1. Create new commit that undo all of the changes made in `<commit>`, then apply it to the current branch.
 
 ```bash 
 git revert <commit>
@@ -336,7 +336,7 @@ git revert <commit>
 
 ---
 
-### Rewriting Git History
+### :warning: Rewriting Git History
 
 #### git commit --amend
 
@@ -353,15 +353,15 @@ git commit --amend -m "<message>"
 #### git rebase
 
 1. Rebase the current branch onto `<base>`. Move or combine a sequence of commits to a new base commit [[Ref](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase)]
-    * The `<base>` can be a *commit ID*, a *branch name*, a *tag*, or a *relative reference to `HEAD`*.
+    * The `<base>` can be a *commit ID*, a *branch name*, a *tag*, or a *relative reference *
+    * :warning:Git is our safety net. By rebasing, we give this less priority, in favour of the desire to achieve a linear history [[Ref](https://medium.com/@fredrikmorken/why-you-should-stop-using-git-rebase-5552bee4fed1)]to `HEAD`*.
 ```bash
 git rebase <base>
 ```
 
-<img src="Images/rebase.svg" width="60%" />
+![Rebase](Images/rebase.png)
 
-<blockquote>Git is our safety net. By rebasing, we give this less priority, in favour of the desire to achieve a linear history.</blockquote>
-[[Ref](https://medium.com/@fredrikmorken/why-you-should-stop-using-git-rebase-5552bee4fed1)]
+
 
 #### git reflog
 
