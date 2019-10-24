@@ -7,7 +7,7 @@
 
 ## 2. Git Command List ([commands](#git-commands))
 
-git [add](#git-add) | git [branch](#git-branch) | git [checkout](#git-checkout) | git [clone](#git-clone) | git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log)  | git [merge](#git-merge) | git [mergetool](#git-mergetool) | git [pull](#git-pull) | git [push](#git-push)| git [rebase](#git-rebase)  | git [reflog](#git-reflog) | git [remote](#git-remote) | git [reset --soft](#git-reset---soft) | git [show](#git-show) | git [status](#git-status) | git [upgrade on Windows](#upgrade-on-windows)
+git [add](#git-add) | git [branch](#git-branch) | git [checkout](#git-checkout) | git [clone](#git-clone) | git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log)  | git [merge](#git-merge) | git [mergetool](#git-mergetool) | git [pull](#git-pull) | git [push](#git-push)| git [rebase](#git-rebase)  | git [reflog](#git-reflog) | git [remote](#git-remote) | git [reset --soft](#git-reset---soft) | git [show](#git-show) | git [status](#git-status) | git [subtree](#git-subtree) | git [upgrade on Windows](#upgrade-on-windows)
 
 ---
 
@@ -463,6 +463,14 @@ git pull -s recursive -X ours # or theirs
 ```bash
 git push <remote> <branch>
 ```
+   
+#### gir subtree
+1. It lets you nest one repository inside another as a sub-directory.
+    * Add the subtree as a `remote`
+     ```bash
+     git remote add my-subtree git@github.com:vinibaggio/my-subproject.git
+     ```
+
 ---
 
 ###   Upgrade on Windows
