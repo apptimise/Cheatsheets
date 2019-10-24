@@ -100,6 +100,13 @@ git branch -a                                     # 'remotes/' is not part of th
 git diff <remote>/<remote_branch> <local_branch>  # e.g. git diff origin/master master
 ```
 
+#### I pulled and a merge occurred. What was it?
+
+```bash
+git log             # see the merge commits: Merge <a> <b>
+git diff <a>...<b>
+```
+
 #### Get a list of conflicted files
 
 1. To create an alias or an executable to be shared with your team, check [[Ref](https://stackoverflow.com/questions/3065650/whats-the-simplest-way-to-list-conflicted-files-in-git)]
@@ -133,7 +140,7 @@ git mergetool
 
 `git diff` differences between the **working directory** and the **index**.
 
-`git diff --staged` or `--cached` differences between the **index** and the **HEAD**. 
+`git diff --staged` or `--cached` differences between the **index** and the **HEAD** (can also add option `--name-only`)
 
 `git diff HEAD` differences between the **working directory** and **HEAD**. All changes since the last commit. 
 
@@ -463,14 +470,22 @@ git pull -s recursive -X ours # or theirs
 ```bash
 git push <remote> <branch>
 ```
-   
+
 #### gir subtree
 1. It lets you nest one repository inside another as a sub-directory.
     * Add the subtree as a `remote`
      ```bash
-     git remote add my-subtree git@github.com:vinibaggio/my-subproject.git
+     git remote add <mysubtree> <subproject_repo_url>
      ```
-
+    * Add `<mysubtree>` at a specified `prefix` folder. :warning: if you add `--squash` you will squash the whole history of the subproject  repository into a single one.
+     ```bash
+     git subtree add --prefix=<folder_for_mysubtree> <mysubtree> master --squash # master branch here
+     ```
+    * Update the code of the subproject from the upstream repository: :warning: mind the `--squash`
+     ```bash
+     git fetch <mysubtree> master
+     git subtree pull --prefix=<folder_for_mysubtree> <mysubtree> master --squash 
+     ```
 ---
 
 ###   Upgrade on Windows
