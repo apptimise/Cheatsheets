@@ -471,7 +471,7 @@ git pull -s recursive -X ours # or theirs
 git push <remote> <branch>
 ```
 
-#### gir subtree
+#### git subtree
 1. It lets you nest one repository inside another as a sub-directory.
     * Add the subtree as a `remote`
      ```bash
