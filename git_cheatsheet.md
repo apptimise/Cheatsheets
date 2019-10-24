@@ -39,7 +39,7 @@ git push <remote> <branch>                        # e.g. git push origin master
 
 ```bash
 git status                   # find number <n> # or git log to see more details
-git reset --soft HEAD~<n>
+git reset --soft HEAD~<n>    # or git reset --soft <commit>
 git commit -m "<message"> 
 ```
 
@@ -52,7 +52,7 @@ git commit -m "<message">
     <blockquote> The remote branch cannot just be fast-forwarded to your commit. So, this way, you'll end up with 2 commits, which is not a bad thing. One shows your local changes and the other shows the two branches that are merged together as a result of conflict resolving (a commit with two parents).</blockquote>  
 ```bash
 git status                   # find number <n>
-git reset --soft HEAD~<n>    # or git reset --soft <root_commit>
+git reset --soft HEAD~<n>    # or git reset --soft <commit>
 git commit -m "<my local changes message"> 
 git pull
 git mergetool
@@ -332,7 +332,11 @@ git commit --amend -m "<message>"
 git rebase <base>
 ```
 
-<img src="Images/rebase.svg" alt="rebase" style="zoom:50%;" />
+<img src="Images/rebase.svg" alt="rebase" style="zoom:20%;" />
+
+<blockquote>Git is our safety net. By rebasing, we give this less priority, in favour of the desire to achieve a linear history.</blockquote>
+
+[[Ref](https://medium.com/@fredrikmorken/why-you-should-stop-using-git-rebase-5552bee4fed1)]
 
 #### git reflog
 
