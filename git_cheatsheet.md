@@ -465,7 +465,7 @@ git pull -s recursive -X ours # or theirs
 
 #### git push 
 
-1. Push the branch to <remote>, along with necessary commits and objects. 
+1. Push the branch to `<remote>`, along with necessary commits and objects. 
     * Creates named branch in the remote repo if it doesn’t exist.
 ```bash
 git push <remote> <branch>
