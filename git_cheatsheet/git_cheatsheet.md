@@ -465,7 +465,7 @@ git pull -s recursive -X ours # or theirs
 
 #### git push 
 
-1. Push the branch to <remote>, along with necessary commits and objects. 
+1. Push the branch to `<remote>`, along with necessary commits and objects. 
     * Creates named branch in the remote repo if it doesn’t exist.
 ```bash
 git push <remote> <branch>
@@ -486,6 +486,11 @@ git push <remote> <branch>
      git fetch <mysubtree> master
      git subtree pull --prefix=<folder_for_mysubtree> <mysubtree> master --squash 
      ```
+2. Subtree diff:
+```bash
+git fetch <mysubtree> master
+git diff remotes/<mysubtree>/master master:<folder_for_mysubtree>
+```
 ---
 
 ###   Upgrade on Windows
@@ -493,6 +498,12 @@ git push <remote> <branch>
 ```bash
 git update-git-for-windows
 ```
-
+---
 ---
 
+###   Upgrade on Windows
+
+```bash
+git update-git-for-windows
+```
+---
