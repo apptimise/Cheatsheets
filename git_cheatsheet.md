@@ -1,24 +1,21 @@
-## 1. Git Terminology
+## 1. Git Terminology List
 [HEAD](#HEAD) | 
+
+---
 
 
 
 ## 2. Git Command List ([commands](#git-commands))
 
-git [add](#git-add) | git [branch](#git-branch) | git [clone](#git-clone) |  git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log)  | git [mergetool](#git-mergetool) | git [pull](#git-pull) | git [push](#git-push) | git [remote](#git-remote) | git [rebase](#git-rebase) | git [reflog](#git-reflog) | git [reset --soft](#git-reset---soft) | git [status](#git-status) | git [upgrade on Windows](#upgrade-on-windows)
+git [add](#git-add) | git [branch](#git-branch) | git [checkout](#git-checkout) | git [clone](#git-clone) | git [commit](#git-commit) |  git [commit --amend](#git-commit---amend) | git [config](#git-config) | git [diff](#git-diff) | git [fetch](#git-fetch) | git [init](#git-init) | git [log](#git-log)  | git [merge](#git-merge) | git [mergetool](#git-mergetool) | git [pull](#git-pull) | git [push](#git-push)| git [rebase](#git-rebase)  | git [reflog](#git-reflog) | git [remote](#git-remote) | git [reset --soft](#git-reset---soft) | git [show](#git-show) | git [status](#git-status) | git [upgrade on Windows](#upgrade-on-windows)
+
+---
 
 
 
-## 3. Git Terminology
+## 3. Git Examples
 
-#### HEAD
-HEAD is a pointer to the local branch you’re currently on [[Ref](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#_switching_branches)].
-
-
-
-## 4. Git Examples
-
-#### Make a change to a remote repo 
+#### Make a change to a remote repo
 
 ```bash
 # 1. Get an idea of what has been changed at remote
@@ -32,16 +29,16 @@ git diff --name-only --staged                     # shows diff between index and
 git commit -m 'message'
 git status                                        # double-check!
 # 3. pull, resolve potential conflicts and push
-git pull
+git pull                                          # git pull -s recursive -X ours/theirs
 git push <remote> <branch>                        # e.g. git push origin master
 ```
 
-#### Squash n commits into 1
+#### Squash n commits into one
 
 1. Do the following steps if you are **NOT** ***behind***
 
 ```bash
-git status                   # find number <n>
+git status                   # find number <n> # or git log to see more details
 git reset --soft HEAD~<n>
 git commit -m "<message"> 
 ```
@@ -63,6 +60,16 @@ git commit -m "<resolved conflicts message">
 git status                   # at this point, you should be ahead by 2 commits
 git push
 ```
+### Sync a forked upstream repo
+
+1. In the *clone*d project, add the original GitHub repository as a `remote`. `remote`s are like nicknames for the URLs of repositories, e.g. `origin` is one. Use **upstream**. Then `fetch` all branches of that remote into remote-tracking branches. Check that you are in the right place (e.g. your master of feature branch): `git branch` to see your ***** *current_branch*. and then `merge` our work with the remote's branch.
+ ```bash
+ git remote add upstream <url>
+ git pull upstream				 # do a git branch -av to see the latest commits
+ git checkout <branch>           # switch to your master or feature branch
+ git merge upstream/master       # merge latest master branch from upstream with your local banch
+ ```
+
 #### Unstage a staged file
 
 ```bash
@@ -108,9 +115,11 @@ git checkout -m <file>
 git mergetool
 ```
 
+---
 
 
-## 5. Git Discussions
+
+## 4. Git Discussions
 
 #### Clone vs. Checkout vs. Pull vs. fetch
 
@@ -133,10 +142,25 @@ git mergetool
 #### --amend vs. reset --soft:
 
 - `git commit --amend` to add/rm files from the very last commit or to change its message.
-
 - `git reset --soft HEAD~<n> ` `git commit -m "<message>"` to combine several sequential commits into a new one.
 
-  
+---
+
+
+
+## Git Terminology
+
+#### HEAD
+
+`HEAD` is a pointer to the local branch you’re currently on [[Ref](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#_switching_branches)]. This is how to see what `HEAD` points to:
+
+```bash
+cat .git/HEAD
+```
+
+---
+
+
 
 ## Git Commands
 
@@ -216,6 +240,11 @@ git log # --oneline
 git diff
 ```
 
+#### git show
+1. Show various types of objects, e.g. last commit:
+```bash
+git show --stat
+```
 ---
 
 ### Resolve Conflicts
@@ -227,6 +256,12 @@ git diff
       ```bash
       git mergetool
       ```
+    
+2. It gives you 4 views:
+    * *LOCAL* – this is file from the current branch
+    * *BASE* – common ancestor, how file looked before both changes
+    * *REMOTE* – file you are merging into your branch
+    * *MERGED* – merge result, this is what gets saved in the repo 
       ```
       ╔═══════╦══════╦════════╗
       ║ LOCAL ║ BASE ║ REMOTE ║ 
@@ -234,12 +269,6 @@ git diff
       ║        MERGED         ║
       ╚═══════════════════════╝
       ```
-    
-2. It gives you 4 views:
-    * *LOCAL* – this is file from the current branch
-    * *BASE* – common ancestor, how file looked before both changes
-    * *REMOTE* – file you are merging into your branch
-    * *MERGED* – merge result, this is what gets saved in the repo 
     
 3. You could edit the **MERGED** view: 
     * If you want to get changes from REMOTE
@@ -295,11 +324,13 @@ git commit --amend -m "<message>"
 
 #### git rebase
 
-1. Rebase the current branch onto `<base>`. 
+1. Rebase the current branch onto `<base>`. Move or combine a sequence of commits to a new base commit [[Ref](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase)]
     * The `<base>` can be a *commit ID*, a *branch name*, a *tag*, or a *relative reference to `HEAD`*.
 ```bash
 git rebase <base>
 ```
+
+<img src="/home/ashkan/Cheatsheets/git/Images/rebase.svg" alt="rebase" style="zoom:50%;" />
 
 #### git reflog
 
@@ -315,22 +346,50 @@ git reflog
 
 #### git branch
 
-1. List all of the branches in your repo. 
+1. List all local branches in your repo: The ***** branch is your current branch.
 
 ```bash
-git branch
+git branch -v              # all local branches
+git branch -v | grep \*    # only current branch
 ```
 
 2. To view your *local* and *remote* branches, pass the `-a` flag 
 ```bash
-git branch -a
+git branch -av
 ```
-3. Add a  `<branch>` argument to create a new branch with the name `<branch>` 
+3. Add a  `<branch>` argument to create a new branch with the name `<branch>`
 ```bash
 git branch <branch>
 ```
+4. Rename a branch
+```bash
+git branch -m <oldname> <newname>
+```
 
----
+#### git checkout
+
+1. Switch to an existing `<branch>`. It lets you navigate between the branches created by git `<branch>`
+
+```bash
+git checkout <branch>
+```
+
+2. Create and checkout a new branch named `<branch>` 
+```bash
+git checkout -b <branch>
+```
+
+#### git merge
+1. Merge `<branch>` into the current branch.
+```bash
+git merge <branch>
+```
+2. If git reports conflicts (and **ONLY IF THERE ARE** conflicts) you can then do [[Ref](https://stackoverflow.com/questions/5817579/how-can-i-preview-a-merge-in-git/30516827#30516827)]:
+```bash
+git merge --abort
+```
+
+If the `merge` is successful, you cannot abort it (only `reset`)
 
 ### Remote Repositories
 
@@ -361,7 +420,13 @@ git fetch <remote>
 git pull <remote>
 ```
 
+2. Pull and resolve conflicts at the same time
+```bash
+git pull -s recursive -X ours # or theirs
+```
+
 #### git push 
+
 1. Push the branch to <remote>, along with necessary commits and objects. 
     * Creates named branch in the remote repo if it doesn’t exist.
 ```bash
