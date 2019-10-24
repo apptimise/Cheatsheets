@@ -489,7 +489,7 @@ git push <remote> <branch>
 2. Subtree diff:
 ```bash
 git fetch <mysubtree> master
-git diff remotes/<mysubtree>/master master:<mysubtree>
+git diff remotes/<mysubtree>/master master:<folder_for_mysubtree>
 ```
 ---
 
