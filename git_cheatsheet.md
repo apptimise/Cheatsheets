@@ -1,5 +1,5 @@
 ## 1. Git Terminology List
-[HEAD](#HEAD) | 
+[Clone](#clone) | [Fork](#fork) | [.gitignore](#.gitignore) | [ HEAD](#HEAD) | 
 
 ---
 
@@ -60,12 +60,14 @@ git commit -m "<resolved conflicts message">
 git status                   # at this point, you should be ahead by 2 commits
 git push
 ```
-### Sync a forked upstream repo
+### Sync a fork
 
 1. In the *clone*d project, add the original GitHub repository as a `remote`. `remote`s are like nicknames for the URLs of repositories, e.g. `origin` is one. Use **upstream**. Then `fetch` all branches of that remote into remote-tracking branches. Check that you are in the right place (e.g. your master of feature branch): `git branch` to see your ***** *current_branch*. and then `merge` our work with the remote's branch.
  ```bash
+ git remote -v                   # current configured remote repository for your fork
  git remote add upstream <url>
- git pull upstream				 # do a git branch -av to see the latest commits
+ git fetch upstream				 # fetch lets you compare commits before a future pull 
+ git branch -av					 # compare commits of different brnaches
  git checkout <branch>           # switch to your master or feature branch
  git merge upstream/master       # merge latest master branch from upstream with your local banch
  ```
@@ -150,6 +152,18 @@ git mergetool
 
 ## Git Terminology
 
+#### Fork 
+
+A *fork* is a copy of a repository. 
+
+* Forks are used to either propose changes to someone's project or to use someone's project as a starting point.
+
+#### Clone
+
+*Clone* is to create a local copy of a repo. 
+
+* When you create a repository, it exists as a *remote* repository. You can clone your repo to create a *local* copy on your computer and sync between the two.
+
 #### HEAD
 
 `HEAD` is a pointer to the local branch you’re currently on [[Ref](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#_switching_branches)]. This is how to see what `HEAD` points to:
@@ -157,6 +171,14 @@ git mergetool
 ```bash
 cat .git/HEAD
 ```
+
+#### .gitignore
+Git uses a `.gitignore` file to determine which files and directories to ignore, before you make a commit.
+* See official list of [recommended .gitignore files](https://github.com/github/gitignore) or use [gitignore.io](https://www.gitignore.io/) 
+* if you already have a file checked in, git **will not** ignore it. you need to untrack the file first:
+  ```bash
+  $ git rm --staged <file>
+  ```
 
 ---
 
@@ -200,6 +222,10 @@ git config user.name "<name>""
     * Replace `<directory>` with `<file>` to change a specific file.
 ```bash
 git add <directory>
+```
+2. See the list of staged files:
+```bash
+git diff --name-only --staged
 ```
 
 #### git commit
@@ -335,7 +361,6 @@ git rebase <base>
 <img src="Images/rebase.svg" width="60%" />
 
 <blockquote>Git is our safety net. By rebasing, we give this less priority, in favour of the desire to achieve a linear history.</blockquote>
-
 [[Ref](https://medium.com/@fredrikmorken/why-you-should-stop-using-git-rebase-5552bee4fed1)]
 
 #### git reflog
