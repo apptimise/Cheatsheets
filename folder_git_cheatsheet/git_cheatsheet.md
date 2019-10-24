@@ -1,4 +1,4 @@
-## 1. Git Terminology List
+## 222. Git Terminology List
 [Clone](#clone) | [Fork](#fork) | [.gitignore](#.gitignore) | [ HEAD](#HEAD) | 
 
 ---
