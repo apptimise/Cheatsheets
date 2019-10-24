@@ -264,7 +264,7 @@ git commit -m "<message">
 
 1. Display the entire commit history using the default format.
 
-    * For customization see additional options.
+    * For customisation, see additional options.
 ```bash
 git log # --oneline
 ```
@@ -287,7 +287,14 @@ git show --stat
 #### git mergetool
 
 1. Resolve conflicts using `vimdiff` [[Ref]( https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git)]
-    * First run this:
+    * if `mergetool` is not configured on the system:
+      
+      ```bash
+      git config merge.tool vimdiff
+      ```
+    
+    * Then run this:
+      
       ```bash
       git mergetool
       ```
