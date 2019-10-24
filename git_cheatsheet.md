@@ -1,5 +1,5 @@
 ## 1. Git Terminology List
-[Clone](#clone) | [Fork](#fork) | [.gitignore](#.gitignore) | [ HEAD](#HEAD) | 
+[Clone](#clone) | [Fork](#fork) | [.gitignore](#.gitignore) | [ HEAD](#HEAD) 
 
 ---
 
