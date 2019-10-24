@@ -332,7 +332,7 @@ git commit --amend -m "<message>"
 git rebase <base>
 ```
 
-<img src="Images/rebase.svg" alt="rebase" style="max-width:60%;" />
+<img src="Images/rebase.svg" width="60%" />
 
 <blockquote>Git is our safety net. By rebasing, we give this less priority, in favour of the desire to achieve a linear history.</blockquote>
 
