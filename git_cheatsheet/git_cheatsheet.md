@@ -328,7 +328,7 @@ git show --stat
     
 4. `:wqa` save and exit
 
-5. `git clean` Remove extra **.orig* created by diff tool (:warning:`-f`?)
+5. `git clean` Remove extra **.orig* created by diff tool (:warning:`-f` to force it?)
 
 6. Commit your changes  
 
